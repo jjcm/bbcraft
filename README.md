@@ -1,3 +1,9 @@
+# Warcraft Edition fork
+
+This checkout contains a working bb fork with classic Warcraft III menu artwork, animated hanging panels, and dynamic material lighting. See [WARCRAFT.md](WARCRAFT.md) for running and maintaining the variant.
+
+---
+
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/e40bda56-54a4-47f8-a417-6bbadf2e5b40">

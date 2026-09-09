@@ -1,0 +1,258 @@
+[
+  {
+    "asset": "backdrop",
+    "source": "Diffui",
+    "originalSize": [
+      2048,
+      1536
+    ],
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2048,
+      "height": 1536
+    },
+    "transparentShare": 0,
+    "maps": []
+  },
+  {
+    "asset": "button",
+    "source": "Diffui",
+    "originalSize": [
+      1536,
+      512
+    ],
+    "crop": {
+      "left": 4,
+      "top": 70,
+      "width": 1527,
+      "height": 290
+    },
+    "transparentShare": 0.457,
+    "maps": [
+      "normal",
+      "height",
+      "roughness"
+    ]
+  },
+  {
+    "asset": "chain",
+    "source": "Diffui",
+    "originalSize": [
+      512,
+      1536
+    ],
+    "crop": {
+      "left": 181,
+      "top": 0,
+      "width": 150,
+      "height": 631
+    },
+    "transparentShare": 0.815,
+    "maps": [
+      "normal",
+      "height",
+      "roughness"
+    ]
+  },
+  {
+    "asset": "corner",
+    "source": "Diffui",
+    "originalSize": [
+      816,
+      816
+    ],
+    "crop": {
+      "left": 6,
+      "top": 10,
+      "width": 801,
+      "height": 794
+    },
+    "transparentShare": 0.714,
+    "maps": [
+      "normal",
+      "height",
+      "roughness"
+    ]
+  },
+  {
+    "asset": "crest",
+    "source": "Diffui",
+    "originalSize": [
+      816,
+      816
+    ],
+    "crop": {
+      "left": 106,
+      "top": 0,
+      "width": 604,
+      "height": 816
+    },
+    "transparentShare": 0.544,
+    "maps": [
+      "normal",
+      "height",
+      "roughness"
+    ]
+  },
+  {
+    "asset": "forge",
+    "source": "Diffui",
+    "originalSize": [
+      816,
+      816
+    ],
+    "crop": {
+      "left": 56,
+      "top": 18,
+      "width": 747,
+      "height": 748
+    },
+    "transparentShare": 0.495,
+    "maps": [
+      "normal",
+      "height",
+      "roughness"
+    ]
+  },
+  {
+    "asset": "frame",
+    "source": "Diffui",
+    "originalSize": [
+      1024,
+      1024
+    ],
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 1024,
+      "height": 1021
+    },
+    "transparentShare": 0.771,
+    "maps": [
+      "normal",
+      "height",
+      "roughness"
+    ]
+  },
+  {
+    "asset": "header",
+    "source": "Diffui",
+    "originalSize": [
+      1536,
+      512
+    ],
+    "crop": {
+      "left": 1,
+      "top": 76,
+      "width": 1534,
+      "height": 301
+    },
+    "transparentShare": 0.481,
+    "maps": [
+      "normal",
+      "height",
+      "roughness"
+    ]
+  },
+  {
+    "asset": "lion",
+    "source": "Diffui",
+    "originalSize": [
+      816,
+      816
+    ],
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 816,
+      "height": 816
+    },
+    "transparentShare": 0.259,
+    "maps": [
+      "normal",
+      "height",
+      "roughness"
+    ]
+  },
+  {
+    "asset": "orb",
+    "source": "Diffui",
+    "originalSize": [
+      816,
+      816
+    ],
+    "crop": {
+      "left": 29,
+      "top": 8,
+      "width": 757,
+      "height": 792
+    },
+    "transparentShare": 0.469,
+    "maps": [
+      "normal",
+      "height",
+      "roughness"
+    ]
+  },
+  {
+    "asset": "project",
+    "source": "Diffui",
+    "originalSize": [
+      816,
+      816
+    ],
+    "crop": {
+      "left": 22,
+      "top": 20,
+      "width": 783,
+      "height": 774
+    },
+    "transparentShare": 0.49,
+    "maps": [
+      "normal",
+      "height",
+      "roughness"
+    ]
+  },
+  {
+    "asset": "stone",
+    "source": "Diffui",
+    "originalSize": [
+      1024,
+      1024
+    ],
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 1024,
+      "height": 1024
+    },
+    "transparentShare": 0,
+    "maps": [
+      "normal",
+      "height",
+      "roughness"
+    ]
+  },
+  {
+    "asset": "swords",
+    "source": "Diffui",
+    "originalSize": [
+      816,
+      816
+    ],
+    "crop": {
+      "left": 8,
+      "top": 6,
+      "width": 798,
+      "height": 793
+    },
+    "transparentShare": 0.581,
+    "maps": [
+      "normal",
+      "height",
+      "roughness"
+    ]
+  }
+]

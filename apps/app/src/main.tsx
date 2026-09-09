@@ -14,6 +14,7 @@ import { installAppQueryClientBrowserEvents } from "./lib/query-client";
 import { appQueryClient } from "./lib/app-query-client";
 import { applyCachedAppThemeCss } from "./lib/themes";
 import "./app.css";
+import "./components/warcraft/warcraft.css";
 
 installForeignDomMutationGuard();
 

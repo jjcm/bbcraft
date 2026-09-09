@@ -1,0 +1,626 @@
+html.bb-app-shell-root {
+  color-scheme: dark;
+  --canvas: #0c1218;
+  --ink: #d9e0e9;
+  --wc-gold: #f4d56d;
+  --wc-blue: #063faf;
+  --wc-bronze: #a38553;
+  --wc-font: Georgia, "Times New Roman", serif;
+  --primary: var(--wc-gold);
+  --primary-foreground: var(--canvas);
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  --card: color-mix(in oklch, var(--canvas) 97%, var(--ink));
+  --card-foreground: var(--ink);
+  --popover: color-mix(in oklch, var(--canvas) 94%, var(--ink));
+  --popover-foreground: var(--ink);
+  --secondary: color-mix(in oklch, var(--canvas) 85%, var(--wc-blue));
+  --secondary-foreground: var(--ink);
+  --accent: color-mix(in oklch, var(--canvas) 64%, var(--wc-blue));
+  --accent-foreground: var(--wc-gold);
+  --muted: color-mix(in oklch, var(--canvas) 88%, var(--ink));
+  --muted-foreground: color-mix(in oklch, var(--ink) 76%, var(--canvas));
+  --subtle-foreground: color-mix(in oklch, var(--ink) 64%, var(--canvas));
+  --readback-foreground: color-mix(in oklch, var(--ink) 68%, var(--canvas));
+  --border: color-mix(in oklch, var(--ink) 28%, var(--canvas));
+  --border-hairline: var(--border);
+  --border-seam: color-mix(in oklch, var(--wc-bronze) 35%, var(--canvas));
+  --border-seam-vertical: var(--border-seam);
+  --input: color-mix(in oklch, var(--ink) 32%, var(--canvas));
+  --ring: var(--wc-gold);
+  --sidebar: var(--canvas);
+  --sidebar-foreground: var(--ink);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--wc-gold);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--wc-gold);
+  --state-hover: color-mix(in oklab, var(--wc-blue) 22%, transparent);
+  --state-active: color-mix(in oklab, var(--wc-blue) 40%, transparent);
+  --surface-recessed: color-mix(in oklab, var(--ink) 4%, transparent);
+  --surface-recessed-solid: color-mix(in oklch, var(--ink) 4%, var(--canvas));
+  --surface-raised: color-mix(in oklab, var(--ink) 3%, transparent);
+  --surface-scrim: color-mix(in oklab, var(--canvas) 96%, transparent);
+  --surface-selected: color-mix(in oklab, var(--wc-blue) 32%, transparent);
+  --surface-selected-border: color-mix(
+    in oklab,
+    var(--wc-blue) 80%,
+    transparent
+  );
+  --timeline-accent: #91b8ec;
+  --file-accent: var(--timeline-accent);
+  --destructive-text: #ed8f91;
+  --success: #9dc893;
+  --diff-added: #8cceab;
+  --diff-removed: #ef959b;
+  --radius: 0.2rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.55rem;
+  --wc-header-height: 100px;
+  --wc-panel-top: 166px;
+  --wc-gutter: 22px;
+}
+
+.bb-app-shell {
+  background: var(--canvas) url("/warcraft/backdrop.webp") center / cover fixed;
+}
+.wc-shell {
+  flex-direction: column;
+  padding: 12px var(--wc-gutter) 22px;
+  background: transparent;
+}
+.wc-workspace {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  gap: 18px;
+  padding-top: 54px;
+  position: relative;
+}
+.wc-command-bar {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--wc-header-height);
+  gap: 26px;
+  padding: 0 102px 0 100px;
+  z-index: 35;
+}
+.wc-brand-group {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.wc-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+  white-space: nowrap;
+  color: var(--wc-gold);
+  text-decoration: none;
+  text-shadow: 0 2px 2px var(--canvas);
+}
+.wc-wordmark {
+  font-family: var(--wc-font);
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: -3px;
+}
+.wc-edition {
+  font-family: var(--wc-font);
+  font-size: var(--text-xs);
+  letter-spacing: 0.16em;
+  max-width: 96px;
+  white-space: normal;
+  line-height: 1.45;
+}
+.wc-command-nav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex: 1;
+  max-width: 950px;
+  gap: 12px;
+}
+[data-wc-button] {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  min-width: 0;
+  flex: 1;
+  gap: 8px;
+  padding: 6px 20px;
+  border: none;
+  background: url("/warcraft/button.webp") center / 100% 100% no-repeat;
+  color: var(--wc-gold);
+  font-family: var(--wc-font);
+  font-size: 20px;
+  font-weight: 700;
+  text-shadow: 0 2px 2px var(--canvas);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    filter 0.15s,
+    translate 0.15s;
+}
+[data-wc-button]:hover {
+  filter: brightness(1.3);
+}
+[data-wc-button]:active {
+  translate: 0 2px;
+}
+[data-wc-button][aria-current="page"] {
+  color: var(--ink);
+  filter: brightness(1.25);
+}
+[data-wc-button]:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+[data-wc-button]:focus-visible,
+.wc-brand:focus-visible {
+  outline: 2px solid var(--wc-gold);
+  outline-offset: 4px;
+}
+[data-wc-icon] {
+  display: inline-block;
+  height: 29px;
+  width: 29px;
+  flex: 0 0 29px;
+  background: center / contain no-repeat;
+}
+[data-wc-icon="swords"] {
+  background-image: url("/warcraft/swords.webp");
+}
+[data-wc-icon="orb"] {
+  background-image: url("/warcraft/orb.webp");
+}
+[data-wc-icon="project"] {
+  background-image: url("/warcraft/project.webp");
+}
+[data-wc-icon="forge"] {
+  background-image: url("/warcraft/forge.webp");
+}
+.wc-command-bar:has(.wc-art-ready) [data-wc-button],
+.wc-command-bar:has(.wc-art-ready) [data-wc-icon] {
+  background-image: none;
+}
+.wc-command-bar:has(.wc-art-ready) [data-wc-button]:hover {
+  background-color: color-mix(in oklab, var(--wc-gold) 9%, transparent);
+}
+.wc-sidebar-toggle {
+  color: var(--wc-gold);
+}
+.wc-art {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+}
+.wc-art canvas,
+.wc-art-fallback {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+}
+.wc-art canvas {
+  opacity: 0;
+}
+.wc-art-ready canvas {
+  opacity: 1;
+}
+.wc-art-ready .wc-art-fallback {
+  visibility: hidden;
+}
+.wc-art-header {
+  inset: 0 -15px;
+}
+.wc-art-frame {
+  inset: -84px 0 0;
+}
+.wc-art-crest {
+  width: 170px;
+  height: 170px;
+  position: relative;
+}
+.wc-art-crest img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.wc-art-fallback i {
+  display: block;
+  position: absolute;
+}
+.wc-frame-fallback {
+  inset: 84px 0 0;
+  border: 40px solid transparent;
+  border-image: url("/warcraft/frame.webp") 14% / 40px stretch;
+}
+.wc-chain {
+  top: 0;
+  width: 27px;
+  height: 102px;
+  background: url("/warcraft/chain.webp") center / 100% 100% no-repeat;
+}
+.wc-chain-left {
+  left: 42px;
+}
+.wc-chain-right {
+  right: 42px;
+}
+.wc-corner {
+  bottom: -5px;
+  width: 79px;
+  height: 79px;
+  background: url("/warcraft/corner.webp") center / contain no-repeat;
+}
+.wc-corner-left {
+  left: -5px;
+}
+.wc-corner-right {
+  right: -5px;
+  transform: scaleX(-1);
+}
+.wc-header-fallback {
+  inset: 4px 16px;
+  background: url("/warcraft/header.webp") center / 100% 100% no-repeat;
+}
+.wc-lion {
+  top: 0;
+  width: var(--wc-header-height);
+  height: var(--wc-header-height);
+  background: url("/warcraft/lion.webp") center / contain no-repeat;
+}
+.wc-lion-left {
+  left: 0;
+}
+.wc-lion-right {
+  right: 0;
+}
+
+.wc-main-window {
+  position: relative;
+  padding: 30px;
+  min-width: 0;
+  background: var(--canvas);
+  border-radius: 0;
+  box-shadow: 0 20px 45px color-mix(in oklab, var(--canvas) 80%, transparent);
+  animation: wc-panel-arrive 1.5s 0.18s both;
+  transform-origin: 50% -60px;
+}
+.wc-shell [data-sidebar="panel"] {
+  top: var(--wc-panel-top);
+  left: var(--wc-gutter);
+  height: calc(var(--bb-shell-height) - var(--wc-panel-top) - 22px);
+  padding: 29px 28px 27px;
+  border: 0;
+  box-shadow: 0 20px 45px color-mix(in oklab, var(--canvas) 80%, transparent);
+  animation: wc-panel-arrive 1.35s both;
+  transform-origin: 50% -60px;
+}
+.wc-shell [data-sidebar="sidebar"] {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+}
+.wc-shell [data-sidebar="panel"][data-collapsible="offcanvas"] {
+  left: calc(var(--sidebar-width) * -1);
+}
+.wc-shell [data-testid="app-layout-content-shell"] {
+  z-index: 2;
+  background: transparent;
+}
+.wc-shell [data-testid="app-sidebar-top-reserve-row"] {
+  height: 43px;
+  position: relative;
+  justify-content: flex-end;
+  border-bottom: 1px solid var(--border-seam);
+  margin-bottom: 12px;
+}
+.wc-shell [data-testid="app-sidebar-top-reserve-row"]::before {
+  content: "CONVERSATIONS";
+  position: absolute;
+  left: 4px;
+  font-family: var(--wc-font);
+  font-size: var(--text-sm);
+  font-weight: bold;
+  letter-spacing: 0.045em;
+  color: var(--wc-gold);
+}
+.wc-shell [data-sidebar="menu-button"] {
+  border-radius: 2px;
+}
+.wc-shell [data-sidebar="menu-button"][data-active="true"] {
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklch, var(--wc-blue) 65%, var(--canvas)),
+    var(--canvas)
+  );
+  box-shadow: inset 0 0 0 1px var(--wc-blue);
+  color: var(--wc-gold);
+}
+.wc-shell [data-sidebar="group-label"] {
+  color: var(--wc-gold);
+  font-family: var(--wc-font);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.wc-shell [data-sidebar="footer"] {
+  border-top: 1px solid var(--border-seam);
+  padding-top: 12px;
+}
+.wc-shell [data-testid="app-page-header-content-row"] {
+  height: 48px;
+}
+.wc-shell [data-testid="app-layout-content-shell"] > header {
+  background: transparent;
+}
+.wc-shell [data-testid="app-page-header-content-row"] p {
+  color: var(--wc-gold);
+  font-family: var(--wc-font);
+  font-size: var(--text-base);
+}
+.wc-workspace > [class*="fixed"]:has([data-sidebar="trigger"]) {
+  display: none;
+}
+.wc-shell .chat-prompt-box {
+  border-radius: 2px;
+  border: 1px solid var(--border);
+  box-shadow:
+    inset 0 0 0 3px var(--canvas),
+    inset 0 0 0 4px var(--border-seam),
+    0 5px 15px color-mix(in oklab, var(--canvas) 70%, transparent);
+  background: var(--canvas) url("/warcraft/stone.webp") center / 550px;
+}
+.wc-shell .chat-prompt-box [contenteditable="true"] {
+  font-family: var(--wc-font);
+  font-size: var(--text-base);
+}
+.wc-shell .chat-prompt-box button[type="submit"] {
+  color: var(--wc-gold);
+  border-radius: 2px;
+  background: var(--wc-blue);
+}
+.wc-shell h1,
+.wc-shell h2,
+.wc-shell h3 {
+  font-family: var(--wc-font);
+  color: var(--wc-gold);
+}
+.wc-shell [data-panel] {
+  border-radius: 0;
+}
+.wc-shell [data-sidebar-sticky-tier]::before,
+.wc-shell [data-sidebar-sticky-tier]::after {
+  background: var(--canvas);
+}
+.wc-welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  max-width: 590px;
+  padding: 20px;
+}
+.wc-welcome h1 {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.035em;
+  line-height: 1.2;
+  text-shadow: 0 2px 2px var(--canvas);
+}
+.wc-welcome-intro {
+  font-family: var(--wc-font);
+  color: var(--muted-foreground);
+  font-size: var(--text-base);
+  text-align: center;
+  max-width: 390px;
+  line-height: 1.55;
+}
+.wc-welcome-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  margin-top: 16px;
+}
+.wc-welcome-actions > button {
+  border: 1px solid var(--border-seam);
+  background: color-mix(in oklab, var(--canvas) 80%, transparent);
+  border-radius: 2px;
+  padding: 16px;
+  align-items: flex-start;
+}
+.wc-welcome-actions > button:first-child {
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklch, var(--wc-blue) 45%, var(--canvas)),
+    var(--canvas)
+  );
+  border-color: var(--wc-blue);
+}
+.wc-welcome-actions > button > svg {
+  color: var(--wc-gold);
+}
+.wc-welcome-actions > button > span > span:first-child {
+  color: var(--wc-gold);
+  font-family: var(--wc-font);
+  font-size: var(--text-base);
+}
+
+@keyframes wc-panel-arrive {
+  0% {
+    transform: translateY(-110vh) rotate(-1.4deg);
+  }
+  47% {
+    transform: translateY(12px) rotate(0.6deg);
+  }
+  64% {
+    transform: translateY(-5px) rotate(-0.3deg);
+  }
+  80% {
+    transform: translateY(2px) rotate(0.12deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+@media (max-width: 1250px) {
+  .wc-command-bar {
+    padding: 0 85px 0 85px;
+    gap: 16px;
+  }
+  .wc-edition {
+    display: none;
+  }
+  .wc-command-nav {
+    gap: 8px;
+  }
+  [data-wc-button] {
+    padding: 6px 14px;
+    font-size: 18px;
+  }
+  [data-wc-icon] {
+    width: 24px;
+    height: 24px;
+    flex-basis: 24px;
+  }
+}
+@media (max-width: 900px) {
+  html.bb-app-shell-root {
+    --wc-gutter: 14px;
+    --wc-header-height: 88px;
+    --wc-panel-top: 142px;
+  }
+  .wc-workspace {
+    padding-top: 42px;
+    gap: 12px;
+  }
+  .wc-command-bar {
+    padding-left: 66px;
+    padding-right: 66px;
+    gap: 10px;
+  }
+  .wc-brand-group {
+    gap: 0;
+  }
+  .wc-wordmark {
+    font-size: 32px;
+  }
+  [data-wc-button] {
+    font-size: var(--text-base);
+    height: 44px;
+    padding: 5px 12px;
+  }
+  [data-wc-icon] {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  html.bb-app-shell-root {
+    --wc-gutter: 8px;
+    --wc-header-height: 70px;
+    --wc-panel-top: 116px;
+  }
+  .wc-shell {
+    padding-top: max(8px, env(safe-area-inset-top));
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+  }
+  .wc-command-bar {
+    gap: 7px;
+    padding: 0 8px;
+  }
+  .wc-art-header .wc-lion {
+    display: none;
+  }
+  .wc-command-bar .wc-art-header {
+    opacity: 0.9;
+  }
+  .wc-command-nav {
+    gap: 3px;
+  }
+  .wc-wordmark {
+    display: none;
+  }
+  [data-wc-button] {
+    font-size: var(--text-xs);
+    height: 44px;
+    padding: 5px 9px;
+  }
+  .wc-workspace {
+    padding-top: 36px;
+  }
+  .wc-main-window {
+    padding: 19px 15px;
+  }
+  .wc-shell [data-sidebar="panel"] {
+    left: 0;
+    top: var(--wc-panel-top);
+    height: calc(var(--bb-shell-height) - var(--wc-panel-top));
+    padding: 20px 16px;
+    animation: none;
+  }
+  .wc-shell [data-sidebar="inset"] {
+    margin: 0;
+  }
+  .wc-art-frame {
+    inset: -60px 0 0;
+  }
+  .wc-art-frame canvas {
+    height: calc(100% + 24px);
+    top: -24px;
+  }
+  .wc-frame-fallback {
+    top: 60px;
+    border-width: 19px;
+    border-image-width: 19px;
+  }
+  .wc-chain {
+    height: 78px;
+  }
+  .wc-corner {
+    width: 57px;
+    height: 57px;
+  }
+  .wc-welcome {
+    gap: 13px;
+    padding: 6px;
+  }
+  .wc-welcome .wc-art-crest {
+    width: 110px;
+    height: 110px;
+  }
+  .wc-welcome h1 {
+    font-size: 26px;
+  }
+  .wc-welcome-actions {
+    grid-template-columns: 1fr;
+    margin-top: 8px;
+  }
+  .wc-welcome-actions > button {
+    padding: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wc-main-window,
+  .wc-shell [data-sidebar="panel"] {
+    animation: none;
+  }
+  [data-wc-button] {
+    transition: none;
+  }
+}
+
+.wc-shell [data-sidebar="panel"][data-state="closed"] .wc-art {
+  visibility: hidden;
+}

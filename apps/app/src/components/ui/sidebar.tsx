@@ -20,6 +20,7 @@ import {
   subscribeCompactSecondaryPanelShelfShowing,
 } from "./secondary-panel-shelf-visibility.js";
 import { useHorizontalDismissDrag } from "./use-horizontal-dismiss-drag.js";
+import { WarcraftArt } from "@/components/warcraft/WarcraftArt";
 
 const SIDEBAR_WIDTH = "16rem";
 const SIDEBAR_MOBILE_VIEWPORT_FRACTION = 0.76;
@@ -783,6 +784,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
           style={{ ...widthStyle, ...style }}
           {...props}
         >
+          <WarcraftArt kind="frame" />
           <div
             data-sidebar="sidebar"
             className="flex h-full w-full flex-col bg-sidebar pt-[env(safe-area-inset-top)] pr-[env(safe-area-inset-right)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
@@ -1021,6 +1023,7 @@ const SidebarMobilePanel = React.forwardRef<
           onTouchStart={beginPanelTouchDrag}
           {...props}
         >
+          <WarcraftArt kind="frame" />
           <div
             data-sidebar="sidebar"
             className="flex h-full w-full flex-col bg-sidebar pt-[env(safe-area-inset-top)] pr-[env(safe-area-inset-right)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
