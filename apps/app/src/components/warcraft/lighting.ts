@@ -57,7 +57,7 @@ void main() {
   vec3 illumination = vec3(.56, .61, .70);
   illumination += vec3(.64, .56, .39) * max(dot(normal, key), 0.) * flicker;
   illumination += vec3(.12, .20, .35) * max(dot(normal, fill), 0.);
-  vec3 lit = base.rgb * illumination + vec3(.93, .82, .61) * specular;
+  vec3 lit = base.rgb * illumination + mix(base.rgb, vec3(.93, .82, .61), .45) * specular;
   float a = base.a * opacity;
   color = vec4(clamp(lit, 0., 1.) * a, a);
 }`;
@@ -256,7 +256,11 @@ export function lightArtwork(
     pointerX += (targetX - pointerX) * 0.16;
     pointerY += (targetY - pointerY) * 0.16;
     gl!.uniform2f(u.viewport, canvas.clientWidth, canvas.clientHeight);
-    gl!.uniform2f(u.light, pointerX - rect.left, pointerY - rect.top);
+    gl!.uniform2f(
+      u.light,
+      ((pointerX - rect.left) * canvas.clientWidth) / rect.width,
+      ((pointerY - rect.top) * canvas.clientHeight) / rect.height,
+    );
     gl!.uniform1f(u.motion, media.matches ? 0 : 1);
     gl!.uniform1f(
       u.flicker,

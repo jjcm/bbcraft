@@ -1,0 +1,30 @@
+name: BBCraft
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bbcraft-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  interface:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: ./.github/actions/setup-workspace
+        with:
+          node-version: 22.x
+          pnpm-version: 9.15.0
+          cache-prefix: bbcraft
+      - name: Build, typecheck, and lint
+        run: pnpm exec turbo run typecheck build lint --filter=@bb/app --output-logs=errors-only
+      - name: Test the conversation interface
+        run: pnpm exec turbo run test --filter=@bb/app --output-logs=errors-only -- WarcraftApp

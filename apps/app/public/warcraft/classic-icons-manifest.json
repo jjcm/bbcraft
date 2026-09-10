@@ -1,0 +1,79 @@
+{
+  "source": "New Diffui icon atlas",
+  "width": 2048,
+  "height": 1536,
+  "icons": {
+    "plus": {
+      "left": 66,
+      "top": 61,
+      "width": 377,
+      "height": 393
+    },
+    "wrench": {
+      "left": 572,
+      "top": 54,
+      "width": 379,
+      "height": 400
+    },
+    "folder": {
+      "left": 1105,
+      "top": 97,
+      "width": 392,
+      "height": 326
+    },
+    "gear": {
+      "left": 1587,
+      "top": 51,
+      "width": 409,
+      "height": 416
+    },
+    "sword": {
+      "left": 56,
+      "top": 548,
+      "width": 388,
+      "height": 399
+    },
+    "scroll": {
+      "left": 589,
+      "top": 558,
+      "width": 381,
+      "height": 393
+    },
+    "send": {
+      "left": 1101,
+      "top": 579,
+      "width": 370,
+      "height": 350
+    },
+    "chat": {
+      "left": 1620,
+      "top": 602,
+      "width": 348,
+      "height": 300
+    },
+    "user": {
+      "left": 84,
+      "top": 1048,
+      "width": 330,
+      "height": 393
+    },
+    "bug": {
+      "left": 597,
+      "top": 1057,
+      "width": 339,
+      "height": 374
+    },
+    "chart": {
+      "left": 1117,
+      "top": 1053,
+      "width": 351,
+      "height": 381
+    },
+    "package": {
+      "left": 1630,
+      "top": 1054,
+      "width": 335,
+      "height": 386
+    }
+  }
+}

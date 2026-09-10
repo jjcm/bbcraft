@@ -1,0 +1,100 @@
+{
+  "width": 1920,
+  "height": 1088,
+  "source": "New Diffui generation based on the supplied reference",
+  "maps": [
+    "normal",
+    "height",
+    "roughness"
+  ],
+  "regions": {
+    "classic-header": {
+      "left": 0,
+      "top": 0,
+      "width": 1920,
+      "height": 172
+    },
+    "classic-left": {
+      "left": 0,
+      "top": 0,
+      "width": 560,
+      "height": 1088
+    },
+    "classic-main": {
+      "left": 560,
+      "top": 0,
+      "width": 1360,
+      "height": 1088
+    },
+    "classic-menu": {
+      "left": 0,
+      "top": 0,
+      "width": 1920,
+      "height": 1088
+    }
+  },
+  "chainRegions": [
+    [
+      94,
+      116,
+      39,
+      56
+    ],
+    [
+      404,
+      91,
+      40,
+      81
+    ],
+    [
+      565,
+      95,
+      41,
+      77
+    ],
+    [
+      1277,
+      90,
+      33,
+      82
+    ],
+    [
+      1693,
+      0,
+      43,
+      130
+    ],
+    [
+      1654,
+      120,
+      127,
+      52
+    ]
+  ],
+  "menuChainRegions": [
+    [
+      98,
+      125,
+      45,
+      47
+    ],
+    [
+      579,
+      123,
+      46,
+      49
+    ],
+    [
+      1293,
+      125,
+      46,
+      47
+    ],
+    [
+      1697,
+      0,
+      40,
+      172
+    ]
+  ]
+}

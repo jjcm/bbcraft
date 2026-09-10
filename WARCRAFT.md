@@ -1,6 +1,6 @@
-# bb · Warcraft Edition
+# BBCraft 3 · Warcraft Edition
 
-A working source fork of [bb](https://github.com/get-bb/bb), on the `warcraft-classic` branch. The React app has classic Warcraft III menu styling; the server, local host daemon, provider integrations, CLI, plugin system, and database contracts remain upstream bb.
+A simplified interface backed by [bb](https://github.com/get-bb/bb), published as [jjcm/bbcraft](https://github.com/jjcm/bbcraft). The frontend follows the supplied Warcraft III menu design and calls bb's existing browser SDK. The server, local daemon, providers, database, and CLI remain upstream bb.
 
 ## Run
 
@@ -9,38 +9,52 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-Use the App URL printed at startup. bb derives the ports and development data directory from the checkout, so this fork has a separate database from your installed bb. For this checkout the app is at `http://localhost:16164`, with data under `~/.bb-dev/code-demobuild-bb-warcraft-b1141c2cee7f`.
+Open the URL printed by the launcher. Ports and development data directories are isolated per checkout.
 
-The header's New Task button uses bb's existing `thread.new` command. Agents and Projects open their existing settings pages. Settings uses the existing `settings.open` command. The sidebar toggle, shortcuts, project creation, provider pickers, message composer, file panels, and terminals retain their normal behavior.
+## Interface
 
-The same operations remain available through `pnpm bb:dev`, including `project create`, `provider list`, `thread spawn`, `thread send`, and `terminal`. Existing provider sign-in is used by the local daemon.
+The scene is exactly **1920 × 1088** CSS pixels. The header, windows, controls, and artwork have fixed positions. By default the scene scales uniformly to fit the browser. Settings → Fit window can be disabled to show actual size with scrolling. There is no responsive panel reflow, resizing, tiling, or nine-slice artwork in this interface.
+
+- **New Task / New Chat:** start a conversation in the chosen project with the chosen agent.
+- **Conversations:** select real bb tasks, retaining separate unsent drafts.
+- **Agents:** choose an available provider for a new conversation in a full-width window.
+- **Projects:** select a project or register an existing folder on a paired machine in a full-width window.
+- **Chat:** send prompts, read Markdown replies, follow progress, stop work, and answer ordinary approval or question requests. Enter sends; Shift+Enter inserts a newline. Failed sends retain the draft.
+- **View Files:** search project files and read text files in the task's actual workspace.
+- **Settings:** toggle lighting, choose fit or actual size, and replay the window entrance in a full-width window. Agents, Projects, and Settings have no conversation sidebar and return to the current chat without losing its draft.
+
+This is deliberately a small UI. The full bb shell, workspace splits, terminals, plugin panels, worktree management, and advanced provider settings are not mounted. Their APIs and CLI remain available. Plugin-specific interaction controls require the CLI or provider's own interface. Conversation listing is capped at 100 root tasks; the timeline requests the latest 100 segments.
 
 ## Artwork and lighting
 
-`apps/app/public/warcraft` contains 13 generated artwork/material assets and 36 generated normal, height, and roughness maps. Eleven assets have native transparency. All artwork was generated through Diffui. The design reference is a specification, and is not used as a screenshot background.
+Diffui generated a new **1920 × 1088 artwork plate**, directly guided by the reference, with text, message content, and pictograms cleared for live HTML. Its two conversation windows are separate alpha layers. A further Diffui generation supplies a full-width menu window and a clean header with an uninterrupted bottom rail. Chains pass behind the stationary header. The moving layers are clipped at the header's lower edge, with an opening for the exposed upper-right chain. That chain is excluded from the stationary header asset and moves with the conversation or menu window, including its anchor.
 
-`components/warcraft/WarcraftArt.tsx` assembles the header, chains, iron frames, corner ornaments, menu icons, and crest. `lighting.ts` uses WebGL2 to relight them with a pointer-following warm key light, cool fill, normal relief, roughness-dependent highlights, and small height parallax. Nine-slice rendering keeps frame corners intact when the sidebar or content panel changes size. The approach follows the sibling `tarot` project's lighting.
+Windows descend vertically using a sampled damped spring: 620 ms, frequency 24, damping ratio 0.86, and approximately 6 px of overshoot. There is no window rotation. The right conversation window starts 40 ms after the left. Opening a menu or returning to chat replays the relevant window entrance. The supplied [Warcraft III recording](https://www.youtube.com/watch?v=XvxYTaz-77c) was inspected frame by frame as a motion reference.
 
-Each scene releases GPU textures, buffers, and programs on unmount. Drawing is capped around 30 fps, stops after the pointer settles, and pauses when the document is hidden. Reduced-motion preference removes the entrance animation and parallax. CSS/image fallbacks remain available if WebGL or a texture fails.
+A separate generation provides **12 painted icons**. All artwork generations have matching normal, height, and roughness maps. The preparation script extracts the generated layers and icons with matching map coordinates. The original design is only a reference; no design screenshot or design crop is shipped as artwork.
 
-The two main windows descend from above, overshoot, and settle on their chains. The horizontal header stays in place. Compact layouts retain bb's existing persistent sidebar drawer and a horizontal command bar.
+`ClassicArt.tsx` and `lighting.ts` apply cursor-driven WebGL2 lighting to the fixed artwork layers. Pointer coordinates account for scene scaling. Normal relief, subtle height parallax, warm highlights, cool fill, and roughness-dependent shine follow the sibling tarot implementation. Drawing stops after the cursor settles and pauses when the document is hidden. Reduced motion removes entrance motion and parallax. Local image fallbacks work without WebGL.
 
-`manifest.json` records original dimensions, alpha coverage, map types, and matching crop bounds. Diffuse images and their maps are cropped together so lighting stays registered. Original downloads and generation receipts are kept in gitignored `.diffui/`.
+Runtime assets are in `apps/app/public/warcraft`; `classic-*-manifest.json` files document coordinates. Earlier reusable assets remain available for future variations. Raw generation receipts and source images live in gitignored `.diffui/`.
 
-To regenerate assets, obtain a fresh Diffui build markdown with a valid build token, then run:
+To regenerate with a valid Diffui build markdown:
 
 ```sh
-python3 scripts/warcraft/generate-assets.py /path/to/build.md
-node scripts/warcraft/prepare-assets.mjs
+python3 scripts/warcraft/generate-classic.py /path/to/build.md
+python3 scripts/warcraft/generate-classic.py /path/to/build.md icons
+python3 scripts/warcraft/generate-classic.py /path/to/build.md menu
+node scripts/warcraft/prepare-classic.mjs
 ```
 
-Pass asset names after the markdown path to recover individual assets. Requests resume from their generation receipts. The shipped frontend contains only local asset URLs.
+## Code and verification
 
-## Verification
+`main.tsx` mounts `components/warcraft/WarcraftApp.tsx` directly. It does not mount or restyle bb's original `AppLayout`. `ClassicPanels.tsx` contains the small agent, project, file, and decision views. Product actions use the existing `sdk.projects`, `sdk.providers`, `sdk.hosts`, and `sdk.threads` surfaces. The same actions remain available through `pnpm bb:dev`.
 
 ```sh
 pnpm exec turbo run typecheck build lint --filter=@bb/app
-pnpm exec turbo run test --filter=@bb/app -- AppLayout ui/sidebar.test.tsx
+pnpm exec turbo run test --filter=@bb/app -- WarcraftApp
 ```
 
-Production build, lint, type checking, and 60 targeted tests passed. The fork's development server and daemon were checked through the real bb CLI. A Codex task was created in the local `bb Warcraft` project, completed, and displayed its response in the browser. Browser checks also cover the menu routes, local project picker, hanging panels, active GPU lighting, and compact sidebar behavior.
+Build, lint, type checking, and four interface tests pass. Tests cover failed-send draft retention, independent conversation drafts, sidebar-free menu navigation and return, and correct project/provider selection on creation, and response/status refresh after workspace setup completes in a background tab. Browser checks confirmed the 1920 × 1088 stage, full-width Agents/Projects/Settings windows, active GPU lighting, menu scrolling, the vertical spring timing, agent and project controls, project file reading, and task creation. A real “Implement Quest System” task was submitted through the new composer and completed through Codex.
+
+Task status, conversation lists, replies, and pending interactions keep polling in background tabs and refresh on focus. Workspace setup output is available while starting, and backend timeline errors are surfaced. New worktree tasks can run project setup scripts before the provider starts; follow-ups reuse the prepared workspace.

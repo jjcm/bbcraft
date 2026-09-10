@@ -1,0 +1,978 @@
+.classic-viewport {
+  --canvas: #090f11;
+  --ink: #d8dfeb;
+  --classic-gold: #ffdf55;
+  --classic-blue: #0037ad;
+  --classic-metal: #546068;
+  --classic-muted: color-mix(in oklab, var(--ink), var(--canvas) 20%);
+  --classic-edge: color-mix(in oklab, var(--classic-metal), var(--canvas) 38%);
+  --classic-text-sm: 18px;
+  --classic-text: 22px;
+  --classic-label: 25px;
+  --classic-heading: 30px;
+  position: fixed;
+  inset: 0;
+  overflow: auto;
+  background: var(--canvas);
+  color: var(--ink);
+  font:
+    var(--classic-text)/1.25 "Times New Roman",
+    Times,
+    serif;
+  color-scheme: dark;
+}
+.classic-viewport.is-fitted {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.classic-size {
+  position: relative;
+  flex: none;
+}
+.classic-stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 1088px;
+  transform-origin: 0 0;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--canvas);
+}
+.classic-stage button,
+.classic-stage input,
+.classic-stage textarea,
+.classic-stage select {
+  font: inherit;
+}
+.classic-stage button {
+  cursor: pointer;
+  color: var(--classic-gold);
+  text-shadow: 1px 2px 2px var(--canvas);
+  border: 0;
+  background: none;
+}
+.classic-stage button:disabled {
+  cursor: default;
+  color: var(--classic-muted);
+}
+.classic-stage button:focus-visible,
+.classic-stage input:focus-visible,
+.classic-stage textarea:focus-visible,
+.classic-stage select:focus-visible {
+  outline: 2px solid var(--classic-gold);
+  outline-offset: 3px;
+}
+.classic-stage button:hover:not(:disabled) {
+  filter: brightness(1.2);
+}
+.classic-stage button:active:not(:disabled) {
+  translate: 0 1px;
+}
+.classic-stage svg {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+}
+.classic-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.classic-conversations-title .classic-icon {
+  width: 40px;
+  height: 40px;
+}
+.classic-new-chat .classic-icon,
+.classic-send .classic-icon {
+  width: 36px;
+  height: 36px;
+}
+.classic-avatar .classic-icon {
+  width: 48px;
+  height: 48px;
+}
+.classic-progress > .classic-icon {
+  animation: classic-working 5s linear infinite;
+}
+.classic-stage h1,
+.classic-stage h2,
+.classic-stage h3,
+.classic-stage p {
+  margin: 0;
+}
+.classic-stage h1,
+.classic-stage h2,
+.classic-stage h3 {
+  color: var(--classic-gold);
+  font-family: inherit;
+  font-weight: bold;
+}
+.classic-backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      color-mix(in oklab, var(--canvas), transparent 12%),
+      color-mix(in oklab, var(--canvas), transparent 20%)
+    ),
+    url("/warcraft/backdrop.webp") center / 1920px 1088px;
+  filter: saturate(0.3);
+}
+.classic-art {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.classic-art img,
+.classic-art canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+.classic-header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1920px;
+  height: 172px;
+  z-index: 3;
+}
+.classic-brand {
+  position: absolute;
+  left: 203px;
+  top: 38px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  color: var(--classic-gold);
+  font-weight: bold;
+  font-size: 40px;
+  white-space: nowrap;
+  text-shadow: 2px 3px 3px var(--canvas);
+}
+.classic-brand img {
+  width: 48px;
+  height: 56px;
+  object-fit: contain;
+}
+.classic-header nav button {
+  position: absolute;
+  top: 43px;
+  height: 51px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  font-size: var(--classic-label);
+  font-weight: bold;
+}
+.classic-header nav svg,
+.classic-new-chat svg,
+.classic-send svg,
+.classic-gold-icon,
+.classic-files-icon,
+.classic-composer-icon {
+  color: var(--classic-gold);
+  stroke-width: 2.3;
+  fill: color-mix(in oklab, var(--classic-gold), var(--canvas) 55%);
+  filter: drop-shadow(2px 2px 1px var(--canvas));
+}
+.classic-nav-new {
+  left: 616px;
+  width: 209px;
+}
+.classic-nav-agents {
+  left: 851px;
+  width: 203px;
+}
+.classic-nav-projects {
+  left: 1080px;
+  width: 197px;
+}
+.classic-nav-settings {
+  left: 1305px;
+  width: 187px;
+}
+.classic-header nav button[aria-current="page"] {
+  text-shadow:
+    0 0 14px color-mix(in oklab, var(--classic-gold), transparent 40%),
+    2px 2px var(--canvas);
+}
+.classic-window-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  clip-path: polygon(
+    0 130px,
+    1640px 130px,
+    1640px 0,
+    1782px 0,
+    1782px 130px,
+    1920px 130px,
+    1920px 1088px,
+    0 1088px
+  );
+}
+.classic-setup-log {
+  margin: 16px 0;
+  color: var(--classic-muted);
+  font-size: var(--classic-text-sm);
+}
+.classic-setup-log summary {
+  cursor: pointer;
+  color: var(--classic-gold);
+}
+.classic-setup-log pre {
+  max-height: 180px;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin-top: 12px;
+}
+.classic-left {
+  position: absolute;
+  left: 0;
+  top: 172px;
+  width: 560px;
+  height: 916px;
+  z-index: 2;
+}
+.classic-main {
+  position: absolute;
+  left: 560px;
+  top: 172px;
+  width: 1360px;
+  height: 916px;
+  z-index: 1;
+}
+.classic-hanging {
+  animation: classic-chain-arrive 620ms linear both;
+}
+.classic-main.classic-hanging {
+  animation-delay: 40ms;
+}
+@keyframes classic-chain-arrive {
+  from {
+    transform: translateY(-1160px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.classic-menu-window {
+  left: 0;
+  width: 1920px;
+}
+.classic-menu-window.classic-hanging {
+  animation-delay: 0ms;
+}
+.classic-menu-heading {
+  position: absolute;
+  left: 86px;
+  top: 84px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  gap: 23px;
+}
+.classic-menu-heading .classic-icon {
+  width: 48px;
+  height: 48px;
+}
+.classic-menu-heading h1 {
+  font-size: var(--classic-heading);
+}
+.classic-menu-window .classic-content {
+  left: 68px;
+  top: 207px;
+  width: 1782px;
+  height: 477px;
+}
+.classic-menu-window .classic-menu-page {
+  padding: 36px 42px;
+}
+.classic-menu-window .classic-agent-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.classic-menu-window .classic-project-form {
+  grid-template-columns: 1fr 2fr 0.8fr auto;
+  align-items: end;
+}
+.classic-menu-window .classic-project-form h3 {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+.classic-menu-window .classic-project-form label {
+  grid-template-columns: minmax(0, 1fr);
+}
+.classic-menu-back {
+  position: absolute;
+  left: 1608px;
+  top: 755px;
+  width: 205px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: var(--classic-text) !important;
+  font-weight: bold !important;
+}
+.classic-menu-back svg {
+  width: 23px;
+  height: 23px;
+}
+.classic-left::before {
+  content: "";
+  position: absolute;
+  left: 66px;
+  top: 117px;
+  width: 434px;
+  height: 610px;
+  background: linear-gradient(
+    120deg,
+    var(--canvas),
+    color-mix(in oklab, var(--canvas), var(--classic-metal) 4%)
+  );
+}
+.classic-conversations-title {
+  position: absolute;
+  left: 73px;
+  top: 33px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: var(--classic-label);
+  letter-spacing: -0.4px;
+}
+.classic-conversations-title svg {
+  width: 40px;
+  height: 40px;
+  color: var(--classic-gold);
+  fill: color-mix(in oklab, var(--classic-gold), var(--canvas) 58%);
+  filter: drop-shadow(2px 2px var(--canvas));
+}
+.classic-conversation-list {
+  position: absolute;
+  left: 64px;
+  top: 113px;
+  width: 438px;
+  height: 604px;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--classic-blue) var(--canvas);
+}
+.classic-conversation {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 84px;
+  padding: 11px 9px;
+  gap: 20px;
+  border-bottom: 2px solid var(--classic-edge) !important;
+  text-align: left;
+}
+.classic-conversation img {
+  width: 50px;
+  height: 52px;
+  object-fit: contain;
+  flex: none;
+}
+.classic-conversation-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  padding-right: 48px;
+}
+.classic-conversation strong {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.classic-conversation small {
+  font-size: var(--classic-text-sm);
+  color: var(--classic-muted);
+}
+.classic-conversation time {
+  position: absolute;
+  top: 14px;
+  right: 12px;
+  font-size: 16px;
+  color: var(--classic-muted);
+}
+.classic-conversation.is-selected {
+  border: 2px solid var(--classic-blue) !important;
+  border-radius: 3px;
+  background: linear-gradient(
+    110deg,
+    color-mix(in oklab, var(--classic-blue), var(--canvas) 10%),
+    color-mix(in oklab, var(--classic-blue), var(--canvas) 52%)
+  );
+  box-shadow: inset 0 1px 1px
+    color-mix(in oklab, var(--classic-blue), var(--ink) 20%);
+}
+.classic-conversation.is-selected small {
+  color: color-mix(in oklab, var(--classic-blue), var(--ink) 70%);
+}
+.classic-new-chat {
+  position: absolute;
+  left: 84px;
+  top: 735px;
+  width: 402px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  font-size: var(--classic-label) !important;
+  font-weight: bold !important;
+}
+.classic-new-chat svg {
+  width: 36px;
+  height: 36px;
+}
+.classic-thread-heading {
+  position: absolute;
+  inset: 0;
+  height: 133px;
+}
+.classic-thread-emblem {
+  position: absolute;
+  left: 56px;
+  top: 46px;
+  width: 57px;
+  height: 57px;
+  object-fit: contain;
+}
+.classic-thread-heading h1 {
+  position: absolute;
+  left: 136px;
+  top: 39px;
+  width: 895px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--classic-heading);
+  line-height: 1.25;
+}
+.classic-thread-meta {
+  position: absolute;
+  left: 136px;
+  top: 82px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 888px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.classic-thread-meta button {
+  color: var(--classic-muted);
+  padding: 0;
+  text-shadow: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.classic-files-icon {
+  position: absolute;
+  left: 1065px;
+  top: 58px;
+  width: 34px !important;
+  height: 37px !important;
+}
+.classic-view-files {
+  position: absolute;
+  left: 1122px;
+  top: 54px;
+  width: 156px;
+  height: 44px;
+  font-size: var(--classic-text) !important;
+  font-weight: bold !important;
+}
+.classic-content {
+  position: absolute;
+  left: 57px;
+  top: 153px;
+  width: 1220px;
+  height: 528px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: auto;
+  padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--classic-edge) var(--canvas);
+  background: var(--canvas);
+}
+.classic-message {
+  position: relative;
+  flex: none;
+  min-height: 119px;
+  padding: 14px 36px 20px 101px;
+  border: 2px solid var(--classic-edge);
+  background: linear-gradient(
+    120deg,
+    color-mix(in oklab, var(--canvas), var(--classic-metal) 3%),
+    var(--canvas)
+  );
+  clip-path: polygon(
+    9px 0,
+    calc(100% - 9px) 0,
+    100% 9px,
+    100% calc(100% - 9px),
+    calc(100% - 9px) 100%,
+    9px 100%,
+    0 calc(100% - 9px),
+    0 9px
+  );
+}
+.classic-message {
+  background-image:
+    linear-gradient(
+      color-mix(in oklab, var(--canvas), transparent 3%),
+      color-mix(in oklab, var(--canvas), transparent 6%)
+    ),
+    url("/warcraft/stone.webp");
+  background-size: 1220px 528px;
+}
+.classic-message.is-agent.is-last {
+  flex: 1;
+  min-height: 310px;
+}
+.classic-message h2 {
+  font-size: var(--classic-label);
+  line-height: 1.25;
+  margin-bottom: 2px;
+  padding-right: 80px;
+}
+.classic-message-body {
+  font-size: var(--classic-text);
+  line-height: 1.23;
+}
+.classic-message-body p + p,
+.classic-message-body ol,
+.classic-message-body ul,
+.classic-message-body pre {
+  margin-top: 18px;
+}
+.classic-message-body p:has(+ ol),
+.classic-message-body p:has(+ ul) {
+  margin-bottom: 10px;
+}
+.classic-message-body ol {
+  list-style: decimal;
+  padding-left: 29px;
+}
+.classic-message-body ul {
+  list-style: disc;
+  padding-left: 29px;
+}
+.classic-message-body li {
+  padding-bottom: 2px;
+}
+.classic-message-body a {
+  color: var(--classic-gold);
+  text-decoration: underline;
+}
+.classic-message-body pre {
+  background: color-mix(in oklab, var(--canvas), var(--classic-metal) 10%);
+  padding: 15px;
+  overflow: auto;
+  font-size: var(--classic-text-sm);
+}
+.classic-message-body code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.85em;
+}
+.classic-message-body table {
+  border-collapse: collapse;
+  font-size: var(--classic-text-sm);
+}
+.classic-message-body th,
+.classic-message-body td {
+  border: 1px solid var(--classic-edge);
+  padding: 5px 10px;
+}
+.classic-message-body img {
+  max-width: 100%;
+  height: auto;
+}
+.classic-message time {
+  position: absolute;
+  right: 29px;
+  top: 19px;
+  color: var(--classic-muted);
+  font-size: var(--classic-text-sm);
+}
+.classic-avatar {
+  position: absolute;
+  left: 12px;
+  top: 13px;
+  width: 66px;
+  height: 68px;
+  display: grid;
+  place-items: center;
+  border: 5px ridge var(--classic-metal);
+  background: linear-gradient(
+    var(--classic-blue),
+    color-mix(in oklab, var(--classic-blue), var(--canvas) 60%)
+  );
+  box-shadow: 0 0 0 2px var(--canvas);
+  clip-path: polygon(
+    7px 0,
+    calc(100% - 7px) 0,
+    100% 7px,
+    100% calc(100% - 7px),
+    calc(100% - 7px) 100%,
+    7px 100%,
+    0 calc(100% - 7px),
+    0 7px
+  );
+}
+.classic-avatar svg {
+  width: 48px;
+  height: 48px;
+  color: color-mix(in oklab, var(--classic-blue), var(--ink) 48%);
+  fill: currentColor;
+  stroke-width: 1.5;
+}
+.is-agent .classic-avatar svg {
+  color: var(--classic-gold);
+  fill: var(--classic-metal);
+  stroke: var(--classic-gold);
+  stroke-width: 1.8;
+  filter: drop-shadow(2px 2px var(--canvas));
+}
+.classic-composer {
+  position: absolute;
+  left: 0;
+  top: 727px;
+  width: 1300px;
+  height: 86px;
+}
+.classic-composer-icon {
+  position: absolute;
+  left: 74px;
+  top: 20px;
+  width: 43px !important;
+  height: 46px !important;
+}
+.classic-composer textarea {
+  position: absolute;
+  left: 163px;
+  top: 16px;
+  width: 880px;
+  height: 57px;
+  padding: 10px 0;
+  resize: none;
+  border: none;
+  outline: none;
+  background: none;
+  color: var(--ink);
+  font-size: var(--classic-text);
+  line-height: 1.4;
+  scrollbar-width: thin;
+}
+.classic-composer textarea::placeholder {
+  color: color-mix(in oklab, var(--ink), var(--canvas) 36%);
+  opacity: 1;
+}
+.classic-composer textarea:focus-visible {
+  outline: none;
+}
+.classic-composer:focus-within::after {
+  content: "";
+  position: absolute;
+  left: 161px;
+  top: 69px;
+  width: 880px;
+  height: 1px;
+  background: color-mix(in oklab, var(--classic-gold), transparent 55%);
+  pointer-events: none;
+}
+.classic-send {
+  position: absolute;
+  left: 1093px;
+  top: 16px;
+  width: 183px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 17px;
+  font-size: var(--classic-label) !important;
+  font-weight: bold !important;
+}
+.classic-send svg {
+  width: 36px;
+  height: 36px;
+}
+.classic-send:disabled {
+  opacity: 0.6;
+}
+.classic-return {
+  position: absolute;
+  left: 161px;
+  top: 20px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.classic-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+  padding: 10px 28px 18px 102px;
+  color: var(--classic-gold);
+}
+.classic-progress > svg {
+  animation: classic-working 5s linear infinite;
+}
+.classic-progress button {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.classic-progress button svg {
+  width: 18px;
+  height: 18px;
+}
+@keyframes classic-working {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.classic-list-notice {
+  padding: 24px !important;
+  color: var(--classic-muted);
+  font-size: var(--classic-text-sm);
+}
+.classic-new-conversation {
+  padding: 34px 36px;
+}
+.classic-new-conversation h2 {
+  font-size: var(--classic-heading);
+  margin-bottom: 15px;
+}
+.classic-new-conversation p {
+  margin-bottom: 10px;
+}
+.classic-new-conversation button {
+  padding: 0;
+  text-decoration: underline;
+}
+.classic-error {
+  padding: 12px 20px !important;
+  color: color-mix(in oklab, var(--classic-gold), #ed624d 75%);
+  font-size: var(--classic-text-sm);
+}
+.classic-menu-page {
+  padding: 30px 38px;
+  font-size: var(--classic-text);
+}
+.classic-menu-page > h2 {
+  font-size: var(--classic-heading);
+  margin-bottom: 12px;
+}
+.classic-menu-page > p {
+  color: var(--classic-muted);
+  margin-bottom: 25px;
+}
+.classic-menu-page h3,
+.classic-interaction h3 {
+  font-size: var(--classic-label);
+  margin-bottom: 14px;
+}
+.classic-agent-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.classic-stage .classic-choice {
+  display: flex;
+  width: 100%;
+  gap: 21px;
+  align-items: center;
+  border: 2px solid var(--classic-edge);
+  padding: 20px;
+  text-align: left;
+  background: color-mix(in oklab, var(--canvas), var(--classic-blue) 8%);
+}
+.classic-choice > svg {
+  width: 38px;
+  height: 38px;
+}
+.classic-choice > span {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+  flex: 1;
+}
+.classic-choice strong {
+  font-size: var(--classic-label);
+}
+.classic-choice small {
+  font-size: var(--classic-text-sm);
+  color: var(--classic-muted);
+  overflow-wrap: anywhere;
+}
+.classic-project-list {
+  display: grid;
+  gap: 12px;
+}
+.classic-project-form {
+  display: grid;
+  gap: 18px;
+  margin-top: 28px;
+  padding-top: 23px;
+  border-top: 1px solid var(--classic-edge);
+}
+.classic-project-form label {
+  display: grid;
+  grid-template-columns: 185px 1fr;
+  align-items: center;
+  gap: 12px;
+}
+.classic-menu-page input:not([type="checkbox"]),
+.classic-menu-page select,
+.classic-interaction input:not([type="checkbox"]):not([type="radio"]) {
+  padding: 10px 13px;
+  background: color-mix(in oklab, var(--canvas), var(--classic-metal) 8%);
+  border: 2px solid var(--classic-edge);
+  color: var(--ink);
+  min-width: 0;
+}
+.classic-stage .classic-small-button {
+  width: fit-content;
+  min-height: 50px;
+  padding: 10px 25px;
+  background: linear-gradient(
+    var(--classic-blue),
+    color-mix(in oklab, var(--classic-blue), var(--canvas) 65%)
+  );
+  border: 4px ridge var(--classic-metal);
+  font-weight: bold;
+}
+.classic-settings label {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 32px 0;
+}
+.classic-settings input {
+  width: 25px;
+  height: 25px;
+  accent-color: var(--classic-blue);
+}
+.classic-settings label span {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--classic-gold);
+}
+.classic-settings small {
+  color: var(--classic-muted);
+  font-size: var(--classic-text-sm);
+}
+.classic-files {
+  min-height: 100%;
+}
+.classic-file-search {
+  width: 100%;
+  margin: 10px 0 20px;
+}
+.classic-file-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px 20px;
+}
+.classic-file-list button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  padding: 9px 4px;
+  overflow: hidden;
+  color: var(--ink);
+  border-bottom: 1px solid var(--classic-edge);
+  font-size: var(--classic-text-sm);
+}
+.classic-file-list svg {
+  width: 20px;
+  height: 20px;
+  color: var(--classic-gold);
+}
+.classic-file-list span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.classic-text-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  margin-bottom: 18px;
+}
+.classic-files h3 {
+  overflow-wrap: anywhere;
+}
+.classic-files pre,
+.classic-interaction pre {
+  padding: 18px;
+  background: color-mix(in oklab, var(--canvas), var(--classic-metal) 7%);
+  font:
+    16px/1.5 ui-monospace,
+    monospace;
+  white-space: pre;
+  overflow: auto;
+}
+.classic-interaction {
+  padding: 24px;
+  border: 1px solid var(--classic-gold);
+}
+.classic-interaction pre {
+  margin: 16px 0;
+  max-height: 240px;
+}
+.classic-decision-actions {
+  display: flex;
+  gap: 12px;
+}
+.classic-interaction fieldset {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.classic-interaction label {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .classic-hanging,
+  .classic-progress > svg {
+    animation: none;
+  }
+  .classic-progress > .classic-icon {
+    animation: none;
+  }
+}
