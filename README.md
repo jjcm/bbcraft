@@ -38,7 +38,7 @@ A new conversation follows the project's environment settings. Worktree creation
 
 We used [Diffui](https://diffui.ai/) for the designs and generated artwork, including transparent window layers, icons, and matching normal, height/depth, and roughness maps. WebGL applies dynamic lighting to those assets.
 
-[View the original Diffui design file](docs/design/agentic-development-interface.png). The reference is included here for easy viewing; runtime artwork was generated separately.
+[View the original Diffui design file](https://diffui.ai/app/canvas/5981c134-aaff-40f4-a1dc-149ca0205b88?share=8169e85e-af4a-4bc4-9b02-3bcbb2a66c42).
 
 See [WARCRAFT.md](WARCRAFT.md) for the implementation, asset-generation scripts, and verification commands.
 
