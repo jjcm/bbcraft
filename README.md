@@ -4,9 +4,9 @@ A very simplified fork of [bb](https://getbb.app/), dressed up like the classic 
 
 **This does not support all of bb's features.** It's a small, experimental interface with plenty missing and probably some rough edges. Good luck.
 
-[![BBCraft 3 demo: load the app, open Agents, and send a follow-up asking for an HTML quest log](docs/media/bbcraft-demo.gif)](docs/media/bbcraft-demo.mp4)
+[![BBCraft 3 demo: select an agent, start a quest-log conversation, and watch live responses](docs/media/bbcraft-demo.gif)](docs/media/bbcraft-demo.mp4)
 
-[Watch / download the recording (MP4)](https://github.com/jjcm/bbcraft/raw/refs/heads/main/docs/media/bbcraft-demo.mp4). The recording shows the real app loading, the chained Agents window, and a follow-up prompt in an existing conversation: “Turn the quest log into a single HTML page.”
+[Watch / download the recording (MP4)](https://github.com/jjcm/bbcraft/raw/refs/heads/main/docs/media/bbcraft-demo.mp4). The recording shows the chained Agents window, a new conversation asking for a Warcraft 3 quest log, and live agent responses.
 
 ## What works
 
